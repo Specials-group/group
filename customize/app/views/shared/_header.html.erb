@@ -1,0 +1,8 @@
+<h1>
+<%= link_to "べんとーべん", root_path %>
+</h1>
+<div id="login_form" >
+  <% unless @current_member %>
+    <%= render "shared/login_form" %>
+  <% end %>
+</div>
