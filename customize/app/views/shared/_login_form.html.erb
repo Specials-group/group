@@ -1,4 +1,4 @@
-<h2>ログイン</h2>
+<div id="login">
 <% if flash.alert %>
 <p class="alert"><%= flash.alert %></p>
 <% end %>
@@ -19,3 +19,4 @@
 </table>
 <%= hidden_field_tag "from", request.path %>
 <% end %>
+</div>
