@@ -26,6 +26,22 @@ padding: 20px 0 40px 0;
 div#header {
   border-top: 4px solid #6bb;
   
+  h1{
+    float: left;
+    width: 50%;
+    color:#FF3300;
+    font-size: 320%;
+  }
+  div#login_form{
+    float: left;
+    width: 50%;
+    div#login{
+      float: right;
+      h2{
+        color:#00FF00;
+      }
+    }
+  }
   p.member {
     width: 300px;
     float: right;
