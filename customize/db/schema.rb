@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141208150302) do
+ActiveRecord::Schema.define(:version => 20141208163136) do
 
   create_table "dish_images", :force => true do |t|
     t.integer  "dish_id",      :null => false
@@ -31,6 +31,18 @@ ActiveRecord::Schema.define(:version => 20141208150302) do
     t.string   "category"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "members", :force => true do |t|
+    t.string   "login_id"
+    t.string   "password"
+    t.string   "name"
+    t.string   "tel"
+    t.string   "email"
+    t.boolean  "admin",           :default => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.string   "hashed_password"
   end
 
 end

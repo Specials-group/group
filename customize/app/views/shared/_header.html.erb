@@ -6,20 +6,17 @@
     <p class="member">
       <%= @current_member.name %>さん |
       <%= link_to "ログアウト", :session, method: :delete, confirm: "ログアウトしますか？"  %>
-        <% if controller.kind_of?(Admin::Base) %>
-          <div id="menubar">
-  <%= menu_link_to "予約管理", :orders %> &nbsp;|&nbsp;
-  <%= menu_link_to "在庫管理", "#" %> &nbsp;|&nbsp;
-  <%= menu_link_to "料理管理", "#" %> &nbsp;|&nbsp;
-  <%= menu_link_to "会員管理", "#" %>
+          <div id="menubar" class="admin">
+  <%= link_to "予約管理", "#" %> &nbsp;|&nbsp;
+  <%= link_to "在庫管理", "#" %> &nbsp;|&nbsp;
+  <%= link_to "料理管理", "#" %> &nbsp;|&nbsp;
+  <%= link_to "会員管理", "#" %>
           </div>
-        <% else %>
-          <div id="menubar">
-  <%= menu_link_to "予約", "#" %> &nbsp;|&nbsp;
-  <%= menu_link_to "予約履歴", "#" %> &nbsp;|&nbsp;
-  <%= menu_link_to "個人情報", "#" %>  
+          <div id="menubar" class="nomal user">
+  <%= link_to "予約", "#" %> &nbsp;|&nbsp;
+  <%= link_to "予約履歴", "#" %> &nbsp;|&nbsp;
+  <%= link_to "個人情報", "#" %>  
           </div>
-        <% end %>
     </p>
 
   <% else %>
