@@ -12,7 +12,7 @@ Customize::Application.routes.draw do
     member { get "check" }  #??
   end
 
-  resources :reserves, except: [:edit, :update] do
+  resources :orders, except: [:edit, :update] do
     member { get "check" }
   end
 
