@@ -168,6 +168,16 @@ table.attr {
   @include data-table;
   th { text-align: right; }
 }
+table.orders_index {
+  @include data-table;
+  th { text-align: center;}
+}
+table.order_show {
+  @include data-table;
+}
+table.order_new {
+  @include data_table;
+}
 
 /* フラッシュ */
 p.notice {
