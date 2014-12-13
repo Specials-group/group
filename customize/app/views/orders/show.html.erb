@@ -1,0 +1,32 @@
+<h2>予約履歴　詳細</h2>
+
+<table class="order_show">
+  <tr>
+    <th>受取日時</th>
+    <td><%= @order.receive_date %></td>
+  </tr>
+  <tr>
+    <th>弁当サイズ</th>
+    <td><%= @order.lunchbox_id %></td>
+  </tr>
+  <tr>
+    <th>主食</th>
+    <td><%= @order.staple_id %></td>
+  </tr>
+  <tr>
+    <th>主菜</th>
+    <td><%= @order.main_id %></td>
+  </tr>
+  <tr>
+    <th>副菜</th>
+    <td><%= @order.sub_id %></td>
+  </tr>
+  <tr>
+    <th>個数</th>
+    <td><%= @order.num %></td>
+  </tr>
+  <tr>
+    <th>状態</th>
+    <td><%= @order.status %></td>
+  </tr>
+</table>

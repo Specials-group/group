@@ -1,0 +1,19 @@
+<h2>予約履歴</h2>
+
+
+<% if @orders.present? %>
+<table class="orders_index" >
+  <tr>
+    <th>日付</th>
+    <th>状態</th>
+  </tr>
+  <% @orders.each do |order| %>
+  <tr>
+    <td><%= link_to order.receive_date, order %></td> 
+    <td><%= order.status %></td>
+  </tr>
+  <% end %>
+</table>
+<% else %>
+  <p>予約履歴がありません</p>
+<% end %>
