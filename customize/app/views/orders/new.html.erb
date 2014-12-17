@@ -2,5 +2,5 @@
 
 <%= form_for @order do |form|%>
 <%= render "form", form: form %>
-<p><%= form.submit "確認画面へ" %></p>
+<p><%= form.button "確認画面へ",  :name=>"check" %></p>
 <% end %>
