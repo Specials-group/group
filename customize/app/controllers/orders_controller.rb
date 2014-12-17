@@ -1,9 +1,9 @@
 #coding: utf-8
 class OrdersController < ApplicationController
-  
+  before_filter :login_required
   #予約履歴一覧
   def index
-    @orders = Order.order("order_date")
+    @orders = Order.where(member_id: @current_member.id).order("order_date")
     
   end
 
@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
     @size = Array.new
     @explanation = Array.new
     @lunchboxes.each do |lunchbox|
-      @size.push(lunchbox.size)
+      @size.push([lunchbox.size, lunchbox.id])
       @explanation.push(lunchbox.explanation)
     end
   end
@@ -30,6 +30,10 @@ class OrdersController < ApplicationController
     elsif params[:sub]
       @dishes= Dish.where(category: "副菜")
       render :template => "dishes/index"
+    elsif params[:check]
+      @order = Order.new(params[:order])
+      @lunchbox = Lunchbox.find(@order.lunchbox_id)
+      render :action=>"check"
     else
       @order = Order.new(params[:order])
       if @order.save
@@ -53,11 +57,5 @@ class OrdersController < ApplicationController
 
   #確認画面
   def check
-    @order = Order.new(params[:order])
-    if @order.save
-      redirect_to @order, notice: "aa"
-    else
-      check
-    end
   end
 end
