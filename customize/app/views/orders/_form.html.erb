@@ -14,9 +14,14 @@
   </tr>
   <tr>
     <th><%= form.label :staple_id, "主食" %></th>
-    <td>
-      <%= form.button "選択", :name=>"staple"%>
-    </td>
+    <% if @order.staple_id != null %>
+      <td><%= @staple.name %></td>
+    <% else %>
+     
+      <td>
+        <%= form.button "選択", :name=>"staple"%>
+      </td>
+    <% end %>
   </tr>
   <tr>
     <th><%= form.label :main_id, "主菜" %></th>
