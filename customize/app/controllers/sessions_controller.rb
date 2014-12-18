@@ -2,7 +2,7 @@
 
 class SessionsController < ApplicationController
   def create
-    member = Member.authenticate(params[:name], params[:password])
+    member = Member.authenticate(params[:login_id], params[:password])
     if member
       session[:member_id] = member.id
     else
