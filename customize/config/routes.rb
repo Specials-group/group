@@ -8,7 +8,7 @@ Customize::Application.routes.draw do
  
   resource :session, only: [:create, :destroy]
 
-  resource :account, only: [:edit]
+  resource :account, only: [:edit, :update]
 
   resources :orders, except: [:edit, :update] do
     member { get "check" }
