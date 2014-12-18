@@ -22,13 +22,13 @@ class OrdersController < ApplicationController
   #登録
   def create
     if params[:staple]
-      @dishes = Dish.where(category: "主食")
+      @dishes = Dish.where(category: "staple")
       render :template=>"dishes/index"
     elsif params[:main]
-      @dishes = Dish.where(category: "主菜")
+      @dishes = Dish.where(category: "main")
       render :template => "dishes/index"
     elsif params[:sub]
-      @dishes= Dish.where(category: "副菜")
+      @dishes= Dish.where(category: "sub")
       render :template => "dishes/index"
     elsif params[:check]
       @order = Order.new(params[:order])
@@ -49,6 +49,10 @@ class OrdersController < ApplicationController
   #予約履歴詳細
   def show
     @order = Order.find(params[:id])
+    @staple = Dish.find(@order.staple_id + 1)
+    @main = Dish.find(@order.main_id+1)
+    @sub = Dish.find(@order.sub_id+1)
+    @lunchbox = Lunchbox.find(@order.lunchbox_id+1)
   end
 
   #予約削除
