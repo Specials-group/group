@@ -22,8 +22,8 @@ class Member < ActiveRecord::Base
       rel
     end
 
-    def authenticate(name, password)
-      member = find_by_name(name)
+    def authenticate(login_id, password)
+      member = find_by_login_id(login_id)
       if member && member.hashed_password.present? &&
          BCrypt::Password.new(member.hashed_password) == password
         member
