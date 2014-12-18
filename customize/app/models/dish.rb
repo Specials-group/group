@@ -2,6 +2,7 @@ class Dish < ActiveRecord::Base
   attr_accessible :name, :kcal, :yen, :genra, :category, :image_attributes
 
   has_one :image, class_name: "DishImage", dependent: :destroy
+  has_one :stocks, dependent: :destroy
 
   accepts_nested_attributes_for :image
 
