@@ -12,14 +12,4 @@ class Admin::MembersController < Admin::Base
   def show
     @member = Member.find(params[:id])
   end
-
-  def update
-    @member = @current_member
-    @member.assign_attributes(params[:member])
-    if @member.save
-      redirect_to :edit_account, notice: "アカウント情報を更新しました。"
-    else
-      render "edit"
-    end
-  end
 end
