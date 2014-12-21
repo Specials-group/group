@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141208163136) do
+ActiveRecord::Schema.define(:version => 20141213065416) do
 
   create_table "dish_images", :force => true do |t|
     t.integer  "dish_id",      :null => false
@@ -33,6 +33,14 @@ ActiveRecord::Schema.define(:version => 20141208163136) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "lunchboxes", :force => true do |t|
+    t.string   "size"
+    t.float    "capacity"
+    t.string   "explanation"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "members", :force => true do |t|
     t.string   "login_id"
     t.string   "password"
@@ -44,5 +52,29 @@ ActiveRecord::Schema.define(:version => 20141208163136) do
     t.datetime "updated_at",                         :null => false
     t.string   "hashed_password"
   end
+
+  create_table "orders", :force => true do |t|
+    t.date     "order_date"
+    t.integer  "member_id"
+    t.datetime "receive_date", :null => false
+    t.integer  "lunchbox_id",  :null => false
+    t.integer  "staple_id",    :null => false
+    t.integer  "main_id",      :null => false
+    t.integer  "sub_id",       :null => false
+    t.integer  "num"
+    t.string   "status"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "stocks", :force => true do |t|
+    t.integer  "dish_id",    :null => false
+    t.datetime "date"
+    t.float    "stock"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "stocks", ["dish_id"], :name => "index_stocks_on_dish_id"
 
 end

@@ -17,7 +17,10 @@ Customize::Application.routes.draw do
   namespace :admin do
     root to: "reserves#index"
     resources :reserves, except: [:new, :create]
-    resources :stocks, only: [:edit, :update]
+    resources :stocks, only: [:edit, :update, :index] do
+      collection { get "index_all" }
+      collection { get "show_date" }
+    end
     resources :dishes do
       collection { get "search" }
     end
