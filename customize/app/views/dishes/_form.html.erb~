@@ -1,15 +1,16 @@
+<% options = ["staple", "main", "sub"] %>
 <table class="attr">
 <%= form.fields_for :image do |imgf| %>
   <tr>
     <th><%= imgf.label :uploaded_image %></th>
     <td>
       <%= imgf.file_field :uploaded_image %>
-      <%# if !imgf.object.new_record? && imgf.object.errors.empty? %>
+      <% if !imgf.object.new_record? && imgf.object.errors.empty? %>
       <div>
         <%= dish_image_tag @dish, size: "80x60" %>
         <%= imgf.hidden_field :id %>
       </div>
-      <%# end %>
+      <% end %>
     </td>
   </tr>
 <% end %>
@@ -31,6 +32,6 @@
   </tr>
   <tr>
     <th><%= form.label :category %></th>
-    <td><%= form.text_field :category %></td>
+    <td><%= form.collection_select :category, Dish.all %></td>
   </tr>
 </table>
