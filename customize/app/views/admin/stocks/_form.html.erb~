@@ -1,0 +1,7 @@
+<table class="attr">
+ 
+  <tr>
+    <th><%= form.label :stock %></th>
+    <td><%= form.text_field :stock %></td>
+  </tr>
+</table>

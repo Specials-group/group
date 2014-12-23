@@ -14,7 +14,7 @@
   </tr>
   <tr>
     <th><%= form.label :staple_id, "主食" %></th>
-    <% if @order.staple_id != nil %>
+    <% if @order.staple_id != null %>
       <td><%= @staple.name %></td>
     <% else %>
      
