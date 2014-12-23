@@ -14,7 +14,7 @@ categories = ["主食", "主菜", "副菜"]
 
   fname = Rails.root.join("db/seeds/development", "dish#{idx%3+1}.jpeg")
   DishImage.create(
-    member: member,
+    dish: dish,
     data: File.open(fname, "rb").read,
     content_type: "image/jpeg"
   )

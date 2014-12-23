@@ -2,7 +2,7 @@
 
 names = ["白米", "ハンバーグ", "コーンサラダ", "五穀米", "唐揚げ", "海藻サラダ"]
 genras = ["分類なし", "洋食", "分類なし", "日本食", "日本食", "分類なし"]
-categories = ["主食", "主菜", "副菜"]
+categories = ["staple", "main", "sub"]
 0.upto(30) do |idx|
   dish = Dish.create(
     name: names[idx%6],
