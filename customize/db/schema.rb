@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(:version => 20141213065416) do
 
   create_table "stocks", :force => true do |t|
     t.integer  "dish_id",    :null => false
-    t.datetime "date"
+    t.string   "date"
     t.float    "stock"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
