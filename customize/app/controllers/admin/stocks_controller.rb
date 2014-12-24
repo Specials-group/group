@@ -9,7 +9,8 @@ class Admin::StocksController < Admin::Base
   end
 
   def show_date
-    @stocks = Stock.find(:all, :conditions => { :date => Stock.find(params[:id]).date})
+    @date = params[:name].split(" ")[0]
+    @stocks = Stock.find(:all, :conditions=>["date like ?", @date])
   end
 
   def edit

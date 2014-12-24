@@ -1,4 +1,5 @@
-<h1><%= @date.try(:strftime, "%Y年%m月%d日")%>の在庫</h1>
+<h1><%= params[:name].to_date.try(:strftime, "%Y年%m月%d日")%>の在庫</h1>
+<%= link_to "在庫一覧に戻る", :action=>:index_all %>
 <% if @stocks.present? %>
 <table class="list">
   <tr>
