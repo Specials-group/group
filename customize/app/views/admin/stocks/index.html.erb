@@ -1,4 +1,4 @@
-<h1>在庫管理だ</h1>
+<h1>在庫管理</h1>
 
 <% if @stocks.present? %>
 　　<% if controller.action_name == "index" %>
@@ -14,7 +14,7 @@
   </tr>
   <% @stocks.each do |stock| %>
   <tr>
-    <td><%= stock.date.try(:strftime, "%Y年%m月%d日") %></td>
+    <td><%= stock.date.to_date.try(:strftime, "%Y年%m月%d日") %></td>
     <td><%= Dish.find(stock.dish).name %></td>
     <td><%= stock.stock %></td>
     <td><%= button_to "変更", [:edit, :admin, stock], :method => :get %></td>
