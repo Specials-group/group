@@ -10,7 +10,7 @@ class Admin::StocksController < Admin::Base
 
   def show_date
     @date = params[:name].split(" ")[0]
-    @stocks = Stock.find(:all, :conditions=>["date like ?", @date + "%"])
+    @stocks = Stock.find(:all, :conditions=>["date like ?", @date])
   end
 
   def edit

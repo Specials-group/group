@@ -1,4 +1,4 @@
-<h1>在庫管理</h1>
+<h1>在庫管理だ</h1>
 
 <% if @stocks.present? %>
 　　<% if controller.action_name == "index" %>

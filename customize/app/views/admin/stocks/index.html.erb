@@ -1,8 +1,8 @@
-<h1>在庫管理だ</h1>
+<h1>在庫管理</h1>
 
 <% if @stocks.present? %>
 　　<% if controller.action_name == "index" %>
-<%= link_to "すべての在庫を確認する", action: :index_all %>
+<%= link_to "日別の在庫を確認する", action: :index_all %>
 　　<% end %>
 
 <table class="list">
