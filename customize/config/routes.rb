@@ -17,7 +17,7 @@ Customize::Application.routes.draw do
   end
 
   namespace :admin do
-    root to: "reserves#index"
+    root to: "orders#index"
     resources :reserves, except: [:new, :create]
     resources :stocks, only: [:edit, :update, :index] do
       collection { get "index_all" }
@@ -27,6 +27,7 @@ Customize::Application.routes.draw do
       collection { get "search" }
     end
     resources :members, only: [:index, :show]
+    resources :orders, only: [:index, :show, :edit, :update, :destroy]
   end
 
   match ':controller(/:action(/:id))(.:format)'
