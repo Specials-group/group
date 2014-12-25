@@ -5,10 +5,16 @@ class SessionsController < ApplicationController
     member = Member.authenticate(params[:login_id], params[:password])
     if member
       session[:member_id] = member.id
+      admin_check = member.admin
     else
       flash.alert = "名前とパスワードが一致しません"
     end
-    redirect_to params[:from] || :root
+
+    if admin_check
+      redirect_to params[:admin_root] || :admin_root
+    else
+      redirect_to params[:from] || :root
+    end
   end
 
   def destroy
