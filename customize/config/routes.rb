@@ -1,8 +1,9 @@
 Customize::Application.routes.draw do
-  root to: "dishes#index"
+  root to: "dishes#top"
   get "dishes/index"
   put 'orders/:id' => "orders#create"
   resources :dishes do
+    collection { get "top" }
     collection { get "search" }
     member { get "order" }
   end

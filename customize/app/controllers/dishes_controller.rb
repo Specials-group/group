@@ -1,18 +1,24 @@
 #coding : utf-8
 class DishesController < ApplicationController
-  def index
-    if params[:name] == "top" 
-      session.delete(:status)
-      session.delete(:order)
-    end
-    
+  def index    
     @dishes = Dish.all
     if(session[:status] != nil)
       @dishes = Dish.where(category: session[:status])
     else
       @dishes = Dish.all
     end
-
+  end
+  
+  def top
+    session.delete(:status)
+    session.delete(:order)
+    @dishes = Dish.all
+    if(session[:status] != nil)
+      @dishes = Dish.where(category: session[:status])
+    else
+      @dishes = Dish.all
+    end
+    render "index"
   end
 
   def show
