@@ -9,7 +9,7 @@
   </tr>
   <tr>
     <th>受取日時</th>
-    <td><%= @order.order_date %></td>
+    <td><%= @order.receive_date.strftime("%Y年%m月%d日 %H:%M:%S") %></td>
   </tr>
   <tr>
     <th>弁当サイズ</th>
