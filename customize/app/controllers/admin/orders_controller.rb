@@ -1,7 +1,7 @@
 # coding: utf-8
 class Admin::OrdersController < Admin::Base
   def index
-    @today_order = Order.limit(3)
+    @today_order = Order.find(:all, :conditions => ["receive_date like ?", Date.today.to_s + "%"])
     @all_order = Order.all
     @size = Array.new
     @staple = Array.new
@@ -62,7 +62,7 @@ class Admin::OrdersController < Admin::Base
     @order = Order.find(params[:id])
     @order.assign_attributes(params[:order])
     if @order.save
-      redirect_to @order, notice: "予約情報を更新しました。"
+      redirect_to [:admin, @order], notice: "予約情報を更新しました。"
     else
       render "edit"
     end
@@ -71,6 +71,6 @@ class Admin::OrdersController < Admin::Base
   def destroy
     @order = Order.find(params[:id])
     @order.destroy
-    redirect_to :orders, notice: "予約情報を削除しました。"
+    redirect_to :admin_orders, notice: "予約情報を削除しました。"
   end
 end
