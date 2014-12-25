@@ -1,6 +1,11 @@
 #coding : utf-8
 class DishesController < ApplicationController
   def index
+    if params[:name] == "top" 
+      session.delete(:status)
+      session.delete(:order)
+    end
+    
     @dishes = Dish.all
     if(session[:status] != nil)
       @dishes = Dish.where(category: session[:status])
