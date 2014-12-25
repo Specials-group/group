@@ -2,7 +2,6 @@
 class Admin::OrdersController < Admin::Base
   def index
     @today_order = Order.find(:all, :conditions => ["receive_date like ?", Date.today.to_s + "%"])
-    @all_order = Order.all
     @size = Array.new
     @staple = Array.new
     @main = Array.new
@@ -16,25 +15,28 @@ class Admin::OrdersController < Admin::Base
       when 2
         @size.push("小")
       end
-
       @staple.push(Dish.find(order.staple_id+1).name)
       @main.push(Dish.find(order.main_id+1).name)
       @sub.push(Dish.find(order.sub_id+1).name)
     end
 
+    @all_order = Order.all
+    @a_size = Array.new
+    @a_staple = Array.new
+    @a_main = Array.new
+    @a_sub = Array.new
     @all_order.each do |order|
       case order.lunchbox_id
       when 0
-        @size.push("大")
+        @a_size.push("大")
       when 1
-        @size.push("普通")
+        @a_size.push("普通")
       when 2
-        @size.push("小")
+        @a_size.push("小")
       end
-
-      @staple.push(Dish.find(order.staple_id+1).name)
-      @main.push(Dish.find(order.main_id+1).name)
-      @sub.push(Dish.find(order.sub_id+1).name)
+      @a_staple.push(Dish.find(order.staple_id+1).name)
+      @a_main.push(Dish.find(order.main_id+1).name)
+      @a_sub.push(Dish.find(order.sub_id+1).name)
     end
   end
 
