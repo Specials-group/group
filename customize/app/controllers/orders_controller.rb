@@ -3,13 +3,20 @@ class OrdersController < ApplicationController
   before_filter :login_required
   #予約履歴一覧
   def index
-    @orders = Order.where(member_id: @current_member.id).order("order_date")
-    
+    @orders = @current_member.orders.order("order_date")
   end
 
   #新規予約
   def new
-    @order = Order.new
+    if params[:name] != "select"
+      session.delete(:order)
+      @order = Order.new
+      @order.member_id = @current_member.id
+      @order.order_date = Date.today
+      @order.status = "本予約"
+    else
+      @order = session[:order]
+    end
     @lunchboxes = Lunchbox.all
     @size = Array.new
     @explanation = Array.new
@@ -21,27 +28,19 @@ class OrdersController < ApplicationController
 
   #登録
   def create
-    if params[:staple]
-      @dishes = Dish.where(category: "staple")
-      render :template=>"dishes/index"
-    elsif params[:main]
-      @dishes = Dish.where(category: "main")
-      render :template => "dishes/index"
-    elsif params[:sub]
-      @dishes= Dish.where(category: "sub")
-      render :template => "dishes/index"
-    elsif params[:check]
-      @order = Order.new(params[:order])
-      @lunchbox = Lunchbox.find(@order.lunchbox_id)
-      render :action=>"check"
-    else
-      @order = Order.new(params[:order])
-      if @order.save
-        redirect_to @order, notice: "aa"
-      else
-        check
+    @order = Order.new(params[:order])
+    select3 = [@order.staple_id, @order.main_id, @order.sub_id]
+      select3.each do |sel|
+        dishes = Dish.find(sel+1)
+        dishes.orders << @order
       end
-    end
+    session.delete(:order)
+    session.delete(:status)
+      if @order.save
+        
+      else
+        render :action=>"check"
+      end
   end
 
 
@@ -49,10 +48,6 @@ class OrdersController < ApplicationController
   #予約履歴詳細
   def show
     @order = Order.find(params[:id])
-    @staple = Dish.find(@order.staple_id + 1)
-    @main = Dish.find(@order.main_id+1)
-    @sub = Dish.find(@order.sub_id+1)
-    @lunchbox = Lunchbox.find(@order.lunchbox_id+1)
   end
 
   #予約削除
@@ -61,5 +56,29 @@ class OrdersController < ApplicationController
 
   #確認画面
   def check
+    @order = Order.new(params[:order])
+    session[:order]= @order
+    if params[:staple]
+      session[:status] = :staple
+      redirect_to :controller=>"dishes", :action=>"index"
+    elsif params[:main]
+      session[:status] = :main
+      redirect_to :controller=>"dishes", :action=>"index"
+    elsif params[:sub]
+     session[:status] = :sub
+      redirect_to :controller=>"dishes", :action=>"index"
+    else
+      select3 = [@order.staple_id, @order.main_id, @order.sub_id]
+      select3.each do |sel|
+        dishes = Dish.find(sel+1)
+        dishes.orders << @order
+      end
+     if @order.valid?
+       render  :action =>"check"
+     else
+       render :action =>"new"
+     end
+    end
   end
+  
 end

@@ -1,9 +1,10 @@
 Customize::Application.routes.draw do
   root to: "dishes#index"
   get "dishes/index"
-
+  put 'orders/:id' => "orders#create"
   resources :dishes do
     collection { get "search" }
+    member { get "order" }
   end
  
   resource :session, only: [:create, :destroy]
@@ -11,7 +12,7 @@ Customize::Application.routes.draw do
   resource :account, only: [:edit, :update]
 
   resources :orders, except: [:edit, :update] do
-    member { get "check" }
+    collection { post "check" }
   end
 
   namespace :admin do
@@ -26,5 +27,8 @@ Customize::Application.routes.draw do
     end
     resources :members, only: [:index, :show]
   end
+
+  match ':controller(/:action(/:id))(.:format)'
+
 
 end

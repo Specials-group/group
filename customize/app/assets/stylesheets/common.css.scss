@@ -174,9 +174,25 @@ table.orders_index {
 }
 table.order_show {
   @include data-table;
+  img{
+    float: left;
+    width: 220px;
+    height:150px;
+  }
+  div#explanation{
+    float: left;
+  }
 }
 table.order_new {
   @include data_table;
+  img{
+    float: left;
+    width: 220px;
+    height:150px;
+  }
+  div#explanation{
+    float: left;
+  }
 }
 
 /* フラッシュ */

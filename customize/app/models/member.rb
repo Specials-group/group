@@ -1,6 +1,7 @@
 class Member < ActiveRecord::Base
   attr_accessible :id, :login_id, :password, :name, :tel, :email, :admin, :password_confirmation
   attr_accessor :password, :password_confirmation
+  has_many :orders
 
   validates :password, presence: { on: :create },
     confirmation: { allow_blank: true}

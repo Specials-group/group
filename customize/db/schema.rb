@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141213065416) do
+ActiveRecord::Schema.define(:version => 20141225065639) do
+
+  create_table "customs", :force => true do |t|
+    t.integer  "order_id",   :null => false
+    t.integer  "dish_id",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "customs", ["dish_id"], :name => "index_customs_on_dish_id"
+  add_index "customs", ["order_id"], :name => "index_customs_on_order_id"
 
   create_table "dish_images", :force => true do |t|
     t.integer  "dish_id",      :null => false
@@ -66,6 +76,16 @@ ActiveRecord::Schema.define(:version => 20141213065416) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
+
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :null => false
+    t.text     "data"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "stocks", :force => true do |t|
     t.integer  "dish_id",    :null => false

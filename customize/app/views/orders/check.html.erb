@@ -4,7 +4,8 @@
 <p>ご注文内容をご確認ください</p>
 <P>以下の内容でお間違いありませんか</P>
 
-<%= form_for @order do |form|%>
-<%= render "form_check", form: form %>
-<p><%= form.submit %></p>
+<%= render :partial=>'form_check' %>
+<%= form_for @order do |form| %>
+  <%= render "button_to_create", form: form %>
+  <%= form.submit "予約する" %>
 <% end %>

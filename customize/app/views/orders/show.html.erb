@@ -7,20 +7,25 @@
   </tr>
   <tr>
     <th>弁当サイズ</th>
-    <td><%= @lunchbox.size %></td>
+    <td><%= @order.lunchbox.size %></td>
   </tr>
+  <% @order.dishes.order("CASE category WHEN 'staple' THEN 1 ELSE 2 END,
+                          CASE category WHEN 'main' THEN 1 ELSE 2 END,
+                          CASE category WHEN 'sub' THEN 1 ELSE 2 END").each do |dish| %>  
   <tr>
-    <th>主食</th>
-    <td><%= @staple.name %></td>
+    <th><%= dish.category %></th>
+    <td>
+      <%= dish_image_tag dish %>
+      <div id="explanation">
+        <p><%= dish.name %></p>
+        <p><%= dish.yen %>円</p>
+        <p><%= dish.kcal %>Kcal</p>
+        <p><%= dish.genra %></p>
+        <p><%= dish.category %></p>
+      </div>
+    </td>
   </tr>
-  <tr>
-    <th>主菜</th>
-    <td><%= @main.name %></td>
-  </tr>
-  <tr>
-    <th>副菜</th>
-    <td><%= @sub.name %></td>
-  </tr>
+<% end %>
   <tr>
     <th>個数</th>
     <td><%= @order.num %></td>

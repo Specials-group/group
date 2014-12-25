@@ -9,7 +9,7 @@
   </tr>
   <% @orders.each do |order| %>
   <tr>
-    <td><%= link_to order.receive_date, order %></td> 
+    <td><%= link_to order.receive_date.strftime("%Y/%m/%d %H:%m"), order %></td> 
     <td><%= order.status %></td>
   </tr>
   <% end %>

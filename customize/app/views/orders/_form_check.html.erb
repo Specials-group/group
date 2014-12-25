@@ -1,41 +1,35 @@
-<table class="order_new" >
+<table class="order_show">
   <tr>
-    <th><%= form.label :receive_date, "受取日時" %></th>
-    <%= form.hidden_field :receive_date %>
-    <td><%= @order.receive_date.strftime("%Y/%m/%d - %H:%m") %></td>
+    <th>受取日時</th>
+    <td><%= @order.receive_date %></td>
   </tr>
   <tr>
-    <th><%= form.label :lunchbox_id, "弁当サイズ" %></th>
-    <%= form.hidden_field :lunchbox_id %>
-    <td><%= @lunchbox.size %></td>
+    <th>弁当サイズ</th>
+    <td><%= @order.lunchbox.size %></td>
   </tr>
+  <% @order.dishes.order("CASE category WHEN 'staple' THEN 1 ELSE 2 END,
+                          CASE category WHEN 'main' THEN 1 ELSE 2 END,
+                          CASE category WHEN 'sub' THEN 1 ELSE 2 END").each do |dish| %>  
   <tr>
-    <th><%= form.label :staple_id, "主食" %></th>
+    <th><%= dish.category %></th>
     <td>
-      <%= form.button "選択", :name=>"staple"%>
+      <%= dish_image_tag dish %>
+      <div id="explanation">
+        <p><%= dish.name %></p>
+        <p><%= dish.yen %>円</p>
+        <p><%= dish.kcal %>Kcal</p>
+        <p><%= dish.genra %></p>
+        <p><%= dish.category %></p>
+      </div>
     </td>
   </tr>
+<% end %>
   <tr>
-    <th><%= form.label :main_id, "主菜" %></th>
-    <td><%= form.button "選択", :name=>"main" %></td>
-  </tr>
-  <tr>
-    <th><%= form.label :sub_id, "副菜" %></th>
-    <td><%= form.button "選択", :name => "sub" %></td>
-
-  </tr>
-  <tr>
-    <th>小計</th>
-    <td>900kcal｜600円</td>
-  </tr>
-  <tr>
-    <th><%= form.label :num, "個数" %></th>
-    <%= form.hidden_field :num %>
+    <th>個数</th>
     <td><%= @order.num %></td>
   </tr>
   <tr>
-    <th>合計</th>
-    <td>900kcal｜600円</td>
+    <th>状態</th>
+    <td><%= @order.status %></td>
   </tr>
-  
 </table>

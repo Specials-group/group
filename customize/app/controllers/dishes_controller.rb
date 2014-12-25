@@ -2,6 +2,12 @@
 class DishesController < ApplicationController
   def index
     @dishes = Dish.all
+    if(session[:status] != nil)
+      @dishes = Dish.where(category: session[:status])
+    else
+      @dishes = Dish.all
+    end
+
   end
 
   def show
@@ -51,6 +57,21 @@ class DishesController < ApplicationController
   def search
     @dishes = Dish.search(params[:q])
     render "index"
+  end
+
+  def order
+    session[session[:status]] = Dish.find(params[:id])
+    @dish = Dish.find(params[:id])
+    case @dish.category
+      when "staple"
+        session[:order].staple_id = @dish.id
+      when "main"
+        session[:order].main_id = @dish.id
+      when "sub"
+        session[:order].sub_id = @dish.id
+    end
+    redirect_to :controller=>"orders", :action=>"new", :name => "select" 
+    
   end
 
 
