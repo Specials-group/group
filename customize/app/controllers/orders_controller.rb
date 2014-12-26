@@ -68,15 +68,15 @@ class OrdersController < ApplicationController
      session[:status] = :sub
       redirect_to :controller=>"dishes", :action=>"index"
     else
-      select3 = [@order.staple_id, @order.main_id, @order.sub_id]
-      select3.each do |sel|
-        dishes = Dish.find(sel+1)
-        dishes.orders << @order
-      end
      if @order.valid?
+       @lunchbox = Lunchbox.find(@order.lunchbox_id)
+       @staple = Dish.find(@order.staple_id)
+       @main = Dish.find(@order.main_id)
+       @sub = Dish.find(@order.sub_id)
+       
        render  :action =>"check"
      else
-       render :action =>"new"
+       redirect_to :action =>"new", :name=>"select"
      end
     end
   end

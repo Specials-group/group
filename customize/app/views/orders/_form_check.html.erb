@@ -7,23 +7,45 @@
     <th>弁当サイズ</th>
     <td><%= @order.lunchbox.size %></td>
   </tr>
-  <% @order.dishes.order("CASE category WHEN 'staple' THEN 1 ELSE 2 END,
-                          CASE category WHEN 'main' THEN 1 ELSE 2 END,
-                          CASE category WHEN 'sub' THEN 1 ELSE 2 END").each do |dish| %>  
   <tr>
-    <th><%= dish.category %></th>
+    <th>主食</th>
     <td>
-      <%= dish_image_tag dish %>
+      <%= dish_image_tag @staple %>
       <div id="explanation">
-        <p><%= dish.name %></p>
-        <p><%= dish.yen %>円</p>
-        <p><%= dish.kcal %>Kcal</p>
-        <p><%= dish.genra %></p>
-        <p><%= dish.category %></p>
+        <p><%= @staple.name %></p>
+        <p><%= @staple.yen %>円</p>
+        <p><%= @staple.kcal %>Kcal</p>
+        <p><%= @staple.genra %></p>
+        <p><%= @staple.category %></p>
       </div>
-    </td>
+      </td>
   </tr>
-<% end %>
+  <tr>
+    <th>主菜</th>
+    <td>
+      <%= dish_image_tag @main %>
+      <div id="explanation">
+        <p><%= @main.name %></p>
+        <p><%= @main.yen %>円</p>
+        <p><%= @main.kcal %>Kcal</p>
+        <p><%= @main.genra %></p>
+        <p><%= @main.category %></p>
+      </div>
+      </td>
+  </tr>
+  <tr>
+    <th>主食</th>
+    <td>
+      <%= dish_image_tag @sub %>
+      <div id="explanation">
+        <p><%= @sub.name %></p>
+        <p><%= @sub.yen %>円</p>
+        <p><%= @sub.kcal %>Kcal</p>
+        <p><%= @sub.genra %></p>
+        <p><%= @sub.category %></p>
+      </div>
+      </td>
+  </tr>
   <tr>
     <th>個数</th>
     <td><%= @order.num %></td>
