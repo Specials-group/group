@@ -1,7 +1,7 @@
 <table class="attr">
   <tr>
     <th><%= form.label :date %></th>
-    <td><%= form.label @stock.date.try(:strftime, "%Y年%m月%d日") %></td>
+    <td><%= form.label @stock.date.to_date.try(:strftime, "%Y年%m月%d日") %></td>
   </tr>
   <tr>
     <th><%= form.label :dish %></th>
