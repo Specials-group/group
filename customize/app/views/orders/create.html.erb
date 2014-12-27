@@ -1,6 +1,8 @@
 <h2>予約完了</h2>
 <p>以下の内容で予約を承りました。</p>
 
+<% @price = 0 %>
+<% @kcal = 0 %>
 <table class="order_show">
   <tr>
     <th>受取日時</th>
@@ -20,16 +22,32 @@
       <div id="explanation">
         <p><%= dish.name %></p>
         <p><%= dish.yen %>円</p>
+           <% @price+=dish.yen %>
         <p><%= dish.kcal %>Kcal</p>
+           <% @kcal+=dish.kcal %>
         <p><%= dish.genra %></p>
         <p><%= dish.category %></p>
       </div>
     </td>
   </tr>
 <% end %>
+
+　　<% @price *= @order.lunchbox.capacity %>
+  <% @kcal *= @order.lunchbox.capacity %>
+  <tr>
+    <th>小計</th>
+    <td>
+      <%= @price.to_i %>円 &nbsp;&nbsp;|&nbsp;&nbsp;
+      <%= @kcal.to_i %>kcal
+    </td>
+  </tr>
   <tr>
     <th>個数</th>
     <td><%= @order.num %></td>
+  </tr>
+  <tr>
+    <th>合計</th>
+    <td><%= (@price*@order.num).to_i%>円</td>
   </tr>
   <tr>
     <th>状態</th>

@@ -73,7 +73,9 @@ class OrdersController < ApplicationController
        @staple = Dish.find(@order.staple_id)
        @main = Dish.find(@order.main_id)
        @sub = Dish.find(@order.sub_id)
-       
+       @price = (@staple.yen + @main.yen + @sub.yen) * @lunchbox.capacity
+       @kcal = (@staple.kcal + @main.kcal + @sub.kcal) * @lunchbox.capacity
+       @sum = @price * @order.num
        render  :action =>"check"
      else
        redirect_to :action =>"new", :name=>"select"

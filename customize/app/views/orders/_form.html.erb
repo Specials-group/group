@@ -87,8 +87,12 @@
   <tr>
     <th>小計</th>
     <td>
-      <%= @price %>円 &nbsp;&nbsp; | &nbsp;&nbsp
-      <%= @kcal %>kcal
+      <div id="price" data-price="<%= @price %>" >
+      
+      </div>
+      <div id="kcal" data-kcal="<%= @kcal %>" >
+      
+      </div>
     </td>
   </tr>
   <tr>

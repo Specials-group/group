@@ -46,9 +46,21 @@
       </div>
       </td>
   </tr>
+  <% @sum =((@staple.yen + @main.yen + @sub.yen) * @lunchbox.capacity).to_i %>
+  <tr>
+    <th>小計</th>
+    <td>
+      <%= @sum %>円 &nbsp;&nbsp;|&nbsp;&nbsp;
+      <%= ((@staple.kcal + @main.kcal + @sub.kcal) * @lunchbox.capacity).to_i %>kcal
+    </td>
+  </tr>
   <tr>
     <th>個数</th>
     <td><%= @order.num %></td>
+  </tr>
+  <tr>
+    <th>合計</th>
+    <td><%= @sum * @order.num %>円</td>
   </tr>
   <tr>
     <th>状態</th>
