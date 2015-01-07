@@ -11,16 +11,16 @@ class Admin::OrdersController < Admin::Base
     @sub = Array.new
     @today_order.each do |order|
       case order.lunchbox_id
-      when 0
-        @size.push("大")
       when 1
-        @size.push("普通")
+        @size.push("大")
       when 2
+        @size.push("普通")
+      when 3
         @size.push("小")
       end
-      @staple.push(Dish.find(order.staple_id+1).name)
-      @main.push(Dish.find(order.main_id+1).name)
-      @sub.push(Dish.find(order.sub_id+1).name)
+      @staple.push(Dish.find(order.staple_id).name)
+      @main.push(Dish.find(order.main_id).name)
+      @sub.push(Dish.find(order.sub_id).name)
     end
 
     @future_order = Order.paginate(
@@ -35,16 +35,16 @@ class Admin::OrdersController < Admin::Base
     @a_sub = Array.new
     @future_order.each do |order|
       case order.lunchbox_id
-      when 0
-        @a_size.push("大")
       when 1
-        @a_size.push("普通")
+        @a_size.push("大")
       when 2
+        @a_size.push("普通")
+      when 3
         @a_size.push("小")
       end
-      @a_staple.push(Dish.find(order.staple_id+1).name)
-      @a_main.push(Dish.find(order.main_id+1).name)
-      @a_sub.push(Dish.find(order.sub_id+1).name)
+      @a_staple.push(Dish.find(order.staple_id).name)
+      @a_main.push(Dish.find(order.main_id).name)
+      @a_sub.push(Dish.find(order.sub_id).name)
     end
   end
 
@@ -60,26 +60,36 @@ class Admin::OrdersController < Admin::Base
     @sub = Array.new
     @all_order.each do |order|
       case order.lunchbox_id
-      when 0
-        @size.push("大")
       when 1
-        @size.push("普通")
+        @size.push("大")
       when 2
+        @size.push("普通")
+      when 3
         @size.push("小")
       end
-      @staple.push(Dish.find(order.staple_id+1).name)
-      @main.push(Dish.find(order.main_id+1).name)
-      @sub.push(Dish.find(order.sub_id+1).name)
+      @staple.push(Dish.find(order.staple_id).name)
+      @main.push(Dish.find(order.main_id).name)
+      @sub.push(Dish.find(order.sub_id).name)
     end
   end
 
   def show
+    @price = 0
+    @kcal = 0
     @order = Order.find(params[:id])
-    @staple = Dish.find(@order.staple_id+1)
-    @main = Dish.find(@order.main_id+1)
-    @sub = Dish.find(@order.sub_id+1)
+    @staple = Dish.find(@order.staple_id)
+    @price += @staple.yen
+    @kcal += @staple.kcal
+    @main = Dish.find(@order.main_id)
+    @price += @main.yen
+    @kcal += @main.kcal
+    @sub = Dish.find(@order.sub_id)
+    @price += @sub.yen
+    @kcal += @sub.kcal
     @size = Array.new
-    @lunchbox = Lunchbox.find(@order.lunchbox_id+1)
+    @lunchbox = Lunchbox.find(@order.lunchbox_id)
+    @price *= @order.lunchbox.capacity
+    @kcal *= @order.lunchbox.capacity
   end
 
   def edit
@@ -90,6 +100,34 @@ class Admin::OrdersController < Admin::Base
     @lunchboxes.each do |lunchbox|
       @size.push([lunchbox.size, lunchbox.id])
       @explanation.push(lunchbox.explanation)
+    end
+  end
+
+  def check
+    @order = Order.new(params[:order])
+    session[:order]= @order
+    if params[:staple]
+      session[:status] = :staple
+      redirect_to :controller=>"dishes", :action=>"index"
+    elsif params[:main]
+      session[:status] = :main
+      redirect_to :controller=>"dishes", :action=>"index"
+    elsif params[:sub]
+     session[:status] = :sub
+      redirect_to :controller=>"dishes", :action=>"index"
+    else
+     if @order.valid?
+       @lunchbox = Lunchbox.find(@order.lunchbox_id)
+       @staple = Dish.find(@order.staple_id)
+       @main = Dish.find(@order.main_id)
+       @sub = Dish.find(@order.sub_id)
+       @price = (@staple.yen + @main.yen + @sub.yen) * @lunchbox.capacity
+       @kcal = (@staple.kcal + @main.kcal + @sub.kcal) * @lunchbox.capacity
+       @sum = @price * @order.num
+       render  :action =>"check"
+     else
+       redirect_to :action =>"new", :name=>"select"
+     end
     end
   end
 
