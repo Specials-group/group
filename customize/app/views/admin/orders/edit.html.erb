@@ -2,7 +2,7 @@
 
 <p><%= link_to "予約の詳細に戻る", [:admin, @order] %></p>
 
-<%= form_for @order do |form| %>
+<%= form_for [:admin, @order] do |form| %>
 <%= render "form", form: form %>
 <p><%= form.submit %></p>
 <% end %>
