@@ -27,7 +27,9 @@ Customize::Application.routes.draw do
       collection { get "search" }
     end
     resources :members, only: [:index, :show]
-    resources :orders, only: [:index, :show, :edit, :update, :destroy]
+    resources :orders, only: [:index, :show, :edit, :update, :destroy] do
+     collection { get "all_order" }
+    end
   end
 
   match ':controller(/:action(/:id))(.:format)'
