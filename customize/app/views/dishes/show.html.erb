@@ -8,6 +8,9 @@
     <p><%= @dish.kcal %>Kcal</p>
     <p><%= @dish.genra %></p>
     <p><%= @dish.category %></p>
+    <% @dish.foodstuffs.order("recipes.created_at").each do |foodstuff| %>
+    <%= foodstuff.name %>
+    <% end %>
   </div>
   <p>
     <%= link_to "一覧に戻る", "index" %>
