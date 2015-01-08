@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
     @order = Order.new(params[:order])
     select3 = [@order.staple_id, @order.main_id, @order.sub_id]
       select3.each do |sel|
-        dishes = Dish.find(sel+1)
+        dishes = Dish.find(sel)
         dishes.orders << @order
       end
     session.delete(:order)
