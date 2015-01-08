@@ -11,7 +11,7 @@ div#container {
 
 /* 左の枠（コンテンツを入れる） */
 div#content {
-  float: left;
+  float: right;
   width: $container_width - $sidebar_width - 20px;
   padding: 10px 10px 10px 0;
 }
