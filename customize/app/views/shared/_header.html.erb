@@ -15,16 +15,14 @@
   <p><%= link_to "予約管理", :admin_orders %> &nbsp;|&nbsp; <%= link_to "在庫管理", :admin_stocks %></p>
   <p><%= link_to "料理管理", "#" %> &nbsp;|&nbsp; <%= link_to "会員管理", :admin_members %></p>
           </div>
-  <br>
-  <br>
       <% else %>
           <div id="menubar" class="nomal user">
   <p><%= link_to "予約", :new_order %> &nbsp;|&nbsp;<%= link_to "予約履歴", :orders %></p>
   <p><%= link_to "個人情報", :edit_account %></p>
           </div>
-  <br>
-  <br>
       <% end %>
+      <br>
+      <br>
     </p>
 
   <% else %>
