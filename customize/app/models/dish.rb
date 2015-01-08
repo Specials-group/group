@@ -6,6 +6,9 @@ class Dish < ActiveRecord::Base
   has_many :customs
   has_many :orders,  through: :customs
 
+  has_many :recipes
+  has_many :foodstuffs, through: :recipes
+
   accepts_nested_attributes_for :image
 
   class << self
