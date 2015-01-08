@@ -5,6 +5,7 @@ genras = ["分類なし", "洋食", "分類なし", "日本食", "日本食", "�
 categories = ["staple", "main", "sub"]
 cals = [360, 230, 120, 400, 250, 100, 450, 250, 150, 380, 250, 200, 380, 300, 200, 300, 300, 100]
 values = [100, 200, 100, 120, 150, 100, 150, 200, 100, 150, 180, 100, 150, 180, 100, 150, 200, 100]
+foodstuffsid = [1,2,3,4,5,6,7,8]
 1.upto(18) do |idx|
   dish = Dish.create(
     name: names[idx-1],
@@ -21,4 +22,8 @@ values = [100, 200, 100, 120, 150, 100, 150, 200, 100, 150, 180, 100, 150, 180, 
     content_type: "image/jpeg"
   )
 
+  0.upto(1) do
+    foodstuffs = Foodstuff.find(foodstuffsid[rand(foodstuffsid.length)])
+    foodstuffs.dishes << dish
+  end
 end
