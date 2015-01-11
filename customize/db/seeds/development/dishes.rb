@@ -12,7 +12,7 @@ foodstuffsid = [1,2,3,4,5,6,7,8]
     kcal: cals[idx-1],
     yen: values[idx-1],
     genra: "#{genras[idx-1]}",
-    category: "#{categories[idx%3]}"
+    category: "#{categories[(idx+2)%3]}"
   )
 
   fname = Rails.root.join("db/seeds/development", "dish#{idx}.jpeg")

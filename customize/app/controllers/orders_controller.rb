@@ -30,17 +30,21 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(params[:order])
     select3 = [@order.staple_id, @order.main_id, @order.sub_id]
-      select3.each do |sel|
-        dishes = Dish.find(sel)
-        dishes.orders << @order
-      end
+    select3.each do |sel|
+      dishes = Dish.find(sel)
+      dishes.orders << @order
+    end
+    @lunchbox = Lunchbox.find(@order.lunchbox_id)
+    @order.lunchbox = @lunchbox
+    @order.save
     session.delete(:order)
     session.delete(:status)
-      if @order.save
-        
-      else
-        render :action=>"check"
-      end
+    @date=@order.receive_date.to_s.split(" ")[0]
+    @order.dishes.each do |dish|
+      @stock = Stock.where(dish_id: "#{dish.id}", date: "#{@date}")
+      @stock[0].stock = @stock[0].stock - @order.lunchbox.capacity * @order.num
+      @stock[0].save
+    end
   end
 
 
