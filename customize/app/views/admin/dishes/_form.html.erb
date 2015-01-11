@@ -5,12 +5,6 @@
     <th><%= imgf.label :uploaded_image %></th>
     <td>
       <%= imgf.file_field :uploaded_image %>
-      <% if !imgf.object.new_record? && imgf.object.errors.empty? %>
-      <div>
-        <%= dish_image_tag @dish, size: "80x60" %>
-        <%= imgf.hidden_field :id %>
-      </div>
-      <% end %>
     </td>
   </tr>
 <% end %>

@@ -13,7 +13,7 @@
       <% if controller.kind_of?(Admin::Base) %>
           <div id="menubar" class="admin">
   <p><%= link_to "予約管理", :admin_orders %> &nbsp;|&nbsp; <%= link_to "在庫管理", :admin_stocks %></p>
-  <p><%= link_to "料理管理", "#" %> &nbsp;|&nbsp; <%= link_to "会員管理", :admin_members %></p>
+  <p><%= link_to "料理管理", :admin_dishes %> &nbsp;|&nbsp; <%= link_to "会員管理", :admin_members %></p>
           </div>
       <% else %>
           <div id="menubar" class="nomal user">
