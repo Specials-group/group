@@ -80,6 +80,19 @@ class OrdersController < ApplicationController
        @price = (@staple.yen + @main.yen + @sub.yen) * @lunchbox.capacity
        @kcal = (@staple.kcal + @main.kcal + @sub.kcal) * @lunchbox.capacity
        @sum = @price * @order.num
+       @date = @order.receive_date.to_s.split(" ")[0]
+       @max= 10000
+       @staple_stock = Stock.where(dish_id: "#{@order.staple_id}", date: "#{@date}")
+       @max = @staple_stock[0].stock if @max > @staple_stock[0].stock
+       @main_stock =Stock.where(dish_id: "#{@order.main_id}", date: "#{@date}")
+       @max = @main_stock[0].stock if @max > @main_stock[0].stock
+       @sub_stock =Stock.where(dish_id: "#{@order.sub_id}", date: "#{@date}")
+       @max = @sub_stock[0].stock if @max > @sub_stock[0].stock
+       
+       if @max <= 50
+        @order.status = "仮予約"
+       end
+       
        render  :action =>"check"
      else
        redirect_to :action =>"new", :name=>"select"
