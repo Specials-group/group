@@ -1,5 +1,5 @@
 class Dish < ActiveRecord::Base
-  attr_accessible :name, :kcal, :yen, :genra, :category, :image_attributes
+  attr_accessible :name, :kcal, :yen, :genra, :category, :image_attributes, :visible
 
   has_one :image, class_name: "DishImage", dependent: :destroy
   has_one :stock, dependent: :destroy

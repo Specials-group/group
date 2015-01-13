@@ -226,7 +226,58 @@ div.field_with_errors {
   padding: 2px;
 }
 
+div#dish{
+  h1{
+    color: #000000;
+  }
+  img{
+    float: left;
+    width: 360px;
+    height:270px;
+  }
+  div#explanation{
+    float: left;
+  }
+}
 
+dl.thumbnail div {
+ float: left;
+ margin: 0 50px 50px 0;
+}
+dl.thumbnail img {
+ 
+ border: 0px solid #bbb;
+ width: 180px;
+ height: 135px;
 
+}
+
+dt#visible_dish{
+ border: 5px solid #ff0000;
+ width: 180px;
+ height: 135px;
+}
+
+dt#invisible_dish{
+ border: 5px solid #0000ff;
+ width: 180px;
+ height: 135px;
+}
+
+dl.thumbnail a { display: block; }
+dl.thumbnail dd {
+ text-align: center;
+ margin-left: 0;
+ margin-top: 2px;
+}
+.clearfix:after {
+ content: ".";
+ display: block;
+ height: 10;
+ line-height: 0;
+ clear: both;
+ visibility: hidden;
+}
+.clearfix { display: inline-block; }
 
 

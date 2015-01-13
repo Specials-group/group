@@ -4,14 +4,20 @@
 <% if @dishes.present? %>
   <dl class="thumbnail clearfix">
 <% @dishes.each do |dish| %>
-    <div>
+  <div>
       <dd><%= link_to dish.name, [:admin, dish] %></dd>
-      <dt><%= link_to dish_image_tag_list(dish), [:admin, dish] %></dt>
+  <% if dish.visible %>
+    <dt id="visible_dish">
+  <% else %>
+    <dt id="invisible_dish">
+  <% end %>
+      <%= link_to dish_image_tag_list(dish), [:admin, dish] %></dt>
       <dd><%= dish.yen %>円</dd>
       <dd><%= dish.kcal %>Kcal</dd>
       <dd><%= dish.genra %></dd>
       <dd><%= dish.category %></dd>
-    </div>
+      <dd><%= dish.visible %></dd>
+  </div>
 <% end %>
   </dl>
 <% else %>

@@ -3,6 +3,7 @@
 <% if @dishes.present? %>
   <dl class="thumbnail clearfix">
 <% @dishes.each do |dish| %>
+   <% if dish.visible %>
     <div>
       <dd><%= link_to dish.name, dish %></dd>
       <dt><%= link_to dish_image_tag_list(dish), dish %></dt>
@@ -11,6 +12,7 @@
       <dd><%= dish.genra %></dd>
       <dd><%= dish.category %></dd>
     </div>
+  <% end %>
 <% end %>
   </dl>
 <% else %>

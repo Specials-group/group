@@ -8,6 +8,7 @@
     <p><%= @dish.kcal %>Kcal</p>
     <p><%= @dish.genra %></p>
     <p><%= @dish.category %></p>
+    <p><%= @dish.visible %></p>
     <% @dish.foodstuffs.order("recipes.created_at").each do |foodstuff| %>
     <%= foodstuff.name %>
     <% end %>
@@ -15,8 +16,6 @@
   <p>
     <%= link_to "一覧に戻る", :admin_dishes %>
     <%= link_to "編集", :edit_admin_dish %>
-    <%= link_to "削除", [:admin, @dish], method: :delete,
-          confirm: "本当に削除しますか？" %>
   </p>
   <p><%= link_to "選択", :action=>"order" %></p>
 </div>
