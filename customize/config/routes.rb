@@ -23,7 +23,7 @@ Customize::Application.routes.draw do
       collection { get "index_all" }
       collection { get "show_date" }
     end
-    resources :dishes except: [:destroy]do
+    resources :dishes, except: [:destroy]do
       collection { get "search" }
     end
     resources :members, only: [:index, :show]
