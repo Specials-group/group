@@ -38,7 +38,6 @@ cal = ->
         div_status.appendChild(p_status)
     else if div_status.hasChildNodes()
         div_status.remoceChild(div_status.childNodes[0]);
-    alert(status)
     return
 
 changelunchbox = ->

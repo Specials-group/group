@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150108090614) do
+ActiveRecord::Schema.define(:version => 20150113093812) do
 
   create_table "customs", :force => true do |t|
     t.integer  "order_id",   :null => false
@@ -34,13 +34,14 @@ ActiveRecord::Schema.define(:version => 20150108090614) do
   add_index "dish_images", ["dish_id"], :name => "index_dish_images_on_dish_id"
 
   create_table "dishes", :force => true do |t|
-    t.string   "name",       :null => false
-    t.integer  "kcal",       :null => false
-    t.integer  "yen",        :null => false
+    t.string   "name",                         :null => false
+    t.integer  "kcal",                         :null => false
+    t.integer  "yen",                          :null => false
     t.string   "genra"
     t.string   "category"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.boolean  "visible",    :default => true
   end
 
   create_table "foodstuffs", :force => true do |t|
