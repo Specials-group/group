@@ -26,7 +26,7 @@ Customize::Application.routes.draw do
     resources :dishes, except: [:destroy]do
       collection { get "search" }
     end
-    resources :members, only: [:index, :show]
+    resources :members, only: [:index, :show, :new, :create]
     resources :orders, only: [:index, :show, :edit, :update, :destroy] do
      collection { get "all_order" }
     end
