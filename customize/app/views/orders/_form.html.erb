@@ -7,8 +7,16 @@
   <%= form.hidden_field :order_date %>
   <tr>
     <th><%= form.label :receive_date, "受取日時" %></th>
-    <td><%= form.datetime_select :receive_date,start_year: Time.now.year, use_month_numbers: true %></td>
+    <td>
+      <%= form.datetime_select :receive_date,
+      start_year: Time.now.year,
+      end_year: Time.now.year + 1,
+      minute_step: 10,
+      use_month_numbers: true %>
+      <%= form.button "load" , :name=>"changedate", :style => "visibility:hidden"%>
+    </td>
   <% @date=@order.receive_date.to_s.split(" ")[0] %>
+  
   </tr>
   <tr>
     <th><%= form.label :lunchbox_id, "弁当サイズ" %></th>

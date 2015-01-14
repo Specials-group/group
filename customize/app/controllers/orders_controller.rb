@@ -8,12 +8,13 @@ class OrdersController < ApplicationController
 
   #新規予約
   def new
-    if params[:name] != "select"
+    if params[:name] == nil
       session.delete(:order)
       @order = Order.new
       @order.member_id = @current_member.id
       @order.order_date = Date.today
       @order.status = "本予約"
+      session[:order] = @order
     else
       @order = session[:order]
     end
@@ -62,7 +63,16 @@ class OrdersController < ApplicationController
   def check
     @order = Order.new(params[:order])
     session[:order]= @order
-    if params[:staple]
+    if params[:changedate]
+      @lunchboxes = Lunchbox.all
+      @size = Array.new
+      @explanation = Array.new
+      @lunchboxes.each do |lunchbox|
+        @size.push([lunchbox.size, lunchbox.id])
+        @explanation.push(lunchbox.explanation)
+      end
+      render "new"
+    elsif params[:staple]
       session[:status] = :staple
       redirect_to :controller=>"dishes", :action=>"index"
     elsif params[:main]
@@ -81,6 +91,7 @@ class OrdersController < ApplicationController
        @kcal = (@staple.kcal + @main.kcal + @sub.kcal) * @lunchbox.capacity
        @sum = @price * @order.num
        @date = @order.receive_date.to_s.split(" ")[0]
+       
        @max= 10000
        @staple_stock = Stock.where(dish_id: "#{@order.staple_id}", date: "#{@date}")
        @max = @staple_stock[0].stock if @max > @staple_stock[0].stock
@@ -89,6 +100,8 @@ class OrdersController < ApplicationController
        @sub_stock =Stock.where(dish_id: "#{@order.sub_id}", date: "#{@date}")
        @max = @sub_stock[0].stock if @max > @sub_stock[0].stock
        
+       
+       @max = @max - @lunchbox.capacity * @order.num
        if @max <= 50
         @order.status = "仮予約"
        end
