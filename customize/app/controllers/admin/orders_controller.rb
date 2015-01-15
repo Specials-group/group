@@ -74,9 +74,12 @@ class Admin::OrdersController < Admin::Base
   end
 
   def show
+    @order = Order.find(params[:id])
+    cookies[:staple] = Order.find(params[:id]).staple_id
+    cookies[:main] = Order.find(params[:id]).main_id
+    cookies[:sub] = Order.find(params[:id]).sub_id
     @price = 0
     @kcal = 0
-    @order = Order.find(params[:id])
     @staple = Dish.find(@order.staple_id)
     @price += @staple.yen
     @kcal += @staple.kcal
@@ -113,31 +116,31 @@ class Admin::OrdersController < Admin::Base
       session[:status] = :main
       redirect_to :controller=>"dishes", :action=>"index"
     elsif params[:sub]
-     session[:status] = :sub
+      session[:status] = :sub
       redirect_to :controller=>"dishes", :action=>"index"
     else
      if @order.valid?
        @lunchbox = Lunchbox.find(@order.lunchbox_id)
        @staple = Dish.find(@order.staple_id)
-       @main = Dish.find(@order.main_id)
-       @sub = Dish.find(@order.sub_id)
+       @main = Dish.find(cookies[:main])
+       @sub = Dish.find(cookies[:sub])
        @price = (@staple.yen + @main.yen + @sub.yen) * @lunchbox.capacity
        @kcal = (@staple.kcal + @main.kcal + @sub.kcal) * @lunchbox.capacity
        @sum = @price * @order.num
        render  :action =>"check"
      else
-       redirect_to :action =>"new", :name=>"select"
+       redirect_to :action =>"edit"
      end
     end
   end
 
   def update
-    @order = Order.find(params[:id])
+    @order = Order.find(params[)
     @order.assign_attributes(params[:order])
-    if @order.save
+    if @order_up.save
       redirect_to [:admin, @order], notice: "予約情報を更新しました。"
     else
-      render "edit"
+      render  :action => "edit"
     end
   end
 
