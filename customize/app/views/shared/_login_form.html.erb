@@ -13,10 +13,14 @@
 <td><%= password_field_tag "password", "", style: "width: 120px" %></td>
 </tr>
 <tr>
-<td colspan="2" align="center">
-<%= submit_tag "ログイン" %></td>
-</tr>
-</table>
+<td>
+<%= submit_tag "ログイン" %>
+</td>
 <%= hidden_field_tag "from", request.path %>
 <% end %>
+<td align=left>
+<%= button_to "新規登録", new_admin_member_path ,{:method => :get}%>
+</td>
+</tr>
+</table>
 </div>
