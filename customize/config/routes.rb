@@ -16,6 +16,8 @@ Customize::Application.routes.draw do
     collection { post "check" }
   end
 
+  resources :members, only: [:new, :create]
+
   namespace :admin do
     root to: "orders#index"
     put 'orders/:id' => "orders#check"
