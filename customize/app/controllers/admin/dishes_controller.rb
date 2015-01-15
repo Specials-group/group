@@ -27,6 +27,13 @@ class Admin::DishesController < Admin::Base
   def create
     @dish = Dish.new(params[:dish])
     if @dish.save
+      0.upto(60) do |idx|
+        Stock.create(
+          dish: @dish,
+          date: idx.days.from_now.to_date,
+          stock: 100
+        )	
+      end
       redirect_to [:admin, @dish], notice: "料理を登録しました。"
     else
       render "new"
@@ -46,12 +53,7 @@ class Admin::DishesController < Admin::Base
     else
       render "edit"
     end
-  end
-
-  def destroy
-    @dish = Dish.find(params[:id])
-    @dish.destroy
-    redirect_to :admin_dishes, notice: "料理を削除しました。"
+      
   end
 
   def search

@@ -1,9 +1,11 @@
 <h1>在庫管理</h1>
 
-<% if @stocks.present? %>
-　　<% if controller.action_name == "index" %>
+<% if controller.action_name == "index" %>
 <%= link_to "すべての在庫を確認する", action: :index_all %>
-　　<% end %>
+<% end %>
+
+<% if @stocks.present? %>
+
 
 <table class="list">
   <tr>
@@ -22,5 +24,5 @@
   <% end %>
 </table>
 <% else %>
-<p>在庫情報がありません<p>
+<p>在庫量が少ない料理はありません。<p>
 <% end %>
