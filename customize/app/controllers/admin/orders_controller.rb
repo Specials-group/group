@@ -135,7 +135,7 @@ class Admin::OrdersController < Admin::Base
   end
 
   def update
-    @order = Order.find(params[)
+    @order = Order.find(params[:id])
     @order.assign_attributes(params[:order])
     if @order_up.save
       redirect_to [:admin, @order], notice: "予約情報を更新しました。"
