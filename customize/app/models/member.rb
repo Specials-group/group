@@ -1,5 +1,5 @@
 class Member < ActiveRecord::Base
-  attr_accessible :id, :login_id, :password, :name, :tel, :email, :admin, :password_confirmation
+  attr_accessible :id, :login_id, :password, :name, :tel, :email, :admin, :password_confirmation, :hashed_password
   attr_accessor :password, :password_confirmation
   has_many :orders
 
