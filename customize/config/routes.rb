@@ -18,6 +18,7 @@ Customize::Application.routes.draw do
 
   namespace :admin do
     root to: "orders#index"
+    put 'orders/:id' => "orders#check"
     resources :reserves, except: [:new, :create]
     resources :stocks, only: [:edit, :update, :index] do
       collection { get "index_all" }
@@ -25,10 +26,13 @@ Customize::Application.routes.draw do
     end
     resources :dishes, except: [:destroy]do
       collection { get "search" }
+      member { get "order" }
     end
-    resources :members, only: [:index, :show, :new, :create]
-    resources :orders, only: [:index, :show, :edit, :update, :destroy] do
-     collection { get "all_order" }
+    resources :members, only: [:index, :show]
+    resources :orders, only: [:index, :show, :edit, :destroy] do
+      collection { post "check" }
+      collection { get "all_order" }
+      collection { post "update" }
     end
   end
 
