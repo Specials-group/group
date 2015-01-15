@@ -17,6 +17,6 @@
     <%= link_to "一覧に戻る", :admin_dishes %>
     <%= link_to "編集", :edit_admin_dish %>
   </p>
-  <p><%= link_to "選択", :action=>"order" %></p>
+  <p><%= link_to "選択", :action => "order", :id => cookies[:order_no] %></p>
 </div>
 
