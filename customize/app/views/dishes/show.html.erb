@@ -16,6 +16,8 @@
     <%= link_to "一覧に戻る", :dishes %>
 
   </p>
+  <% if session[:order].present? %>
   <p><%= link_to "選択", :action=>"order" %></p>
+  <% end %>
 </div>
 
