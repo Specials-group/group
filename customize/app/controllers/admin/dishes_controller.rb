@@ -2,9 +2,15 @@
 class Admin::DishesController < Admin::Base
   def index    
     @dishes = Dish.all
+    if(session[:status] != nil)
+      @dishes = Dish.where(category: session[:status])
+    else
+      @dishes = Dish.all
+    end
   end
 
   def show
+    cookies[:dish] = params[:id]
     @dish = Dish.find(params[:id])
     if params[:format].in?(["jpg", "png", "gif"])
       send_image
@@ -53,6 +59,18 @@ class Admin::DishesController < Admin::Base
     render "index"
   end
 
+  def order
+    @dish = Dish.find(cookies[:dish])
+    case @dish.category
+      when "staple"
+        cookies[:staple] = @dish.id
+      when "main"
+        cookies[:main] = @dish.id
+      when "sub"
+        cookies[:sub] = @dish.id
+    end
+    redirect_to :controller =>"orders", :action =>"edit" 
+  end
 
   private
   def send_image
