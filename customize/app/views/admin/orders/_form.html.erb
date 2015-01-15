@@ -25,7 +25,7 @@
     <td>
       <% if @order.staple_id != nil %>
         <%= form.hidden_field :staple_id %>
-        <% @staple = Dish.find(@order.staple_id) %>
+        <% @staple = Dish.find(cookies[:staple]) %>
          <%= dish_image_tag @staple %>
         <div id="explanation">
          <p><%= @staple.name %></p>
@@ -46,7 +46,7 @@
     <td>
       <% if @order.main_id != nil %>
          <%= form.hidden_field :main_id %>
-         <% @main = Dish.find(@order.main_id) %>
+         <% @main = Dish.find(cookies[:main]) %>
          <%= dish_image_tag @main %>
         <div id="explanation">
          <p><%= @main.name %></p>
@@ -67,7 +67,7 @@
     <td>
       <% if @order.sub_id != nil %>
          <%= form.hidden_field :sub_id %>
-          <% @sub = Dish.find(@order.sub_id) %>
+          <% @sub = Dish.find(cookies[:sub]) %>
          <%= dish_image_tag @sub %>
         <div id="explanation">
          <p><%= @sub.name %></p>
