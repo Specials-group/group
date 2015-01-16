@@ -3,9 +3,9 @@
 status = ["仮予約", "本予約", "済"]
 
 0.upto(30) do |i|
-  @order = Order.create(order_date: "2014/12/07",
+  @order = Order.create(order_date: Date.today,
                member_id: i%3,
-               receive_date: Time.mktime(2015, 1, (1 + i / 2) % 31, (i + 10) % 24, 30),
+               receive_date: DateTime.now + i,
                lunchbox_id: i%3 + 1,
                staple_id: [1,4].sample,
                main_id: [2,5].sample,

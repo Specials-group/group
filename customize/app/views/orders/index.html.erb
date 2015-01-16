@@ -4,12 +4,22 @@
 <% if @orders.present? %>
 <table class="orders_index" >
   <tr>
-    <th>日付</th>
+    <th>受取日時</th>
+    <th>弁当サイズ</th>
+    <th>主食</th>
+    <th>主菜</th>
+    <th>副菜</th>
+    <th>数量</th>
     <th>状態</th>
   </tr>
-  <% @orders.each do |order| %>
+  <% @orders.reverse_each do |order| %>
   <tr>
-    <td><%= link_to order.receive_date.strftime("%Y/%m/%d %H:%m"), order %></td> 
+    <td><%= link_to order.receive_date.strftime("%Y年%m月%d日 %H:%m"), order %></td>
+    <td><%= order.lunchbox.size%></td>
+    <td><%= order.dishes[0].name%></td>
+    <td><%= order.dishes[1].name%></td>
+    <td><%= order.dishes[2].name%></td>
+    <td><%= order.num%></td>
     <td><%= order.status %></td>
   </tr>
   <% end %>
