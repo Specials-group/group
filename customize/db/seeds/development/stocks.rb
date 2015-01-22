@@ -4,7 +4,7 @@ names = ["白米", "ハンバーグ", "コーンサラダ", "五穀米", "唐揚
 
 names.each do |name|
   dish = Dish.find_by_name(name)
-    0.upto(60) do |idx|
+    0.upto(365) do |idx|
     Stock.create(
     { dish: dish,
       date: idx.days.from_now.to_date,

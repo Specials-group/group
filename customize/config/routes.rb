@@ -20,7 +20,8 @@ Customize::Application.routes.draw do
 
   namespace :admin do
     root to: "orders#index"
-    put 'orders/:id' => "orders#check"
+    match 'orders/:id/check(.:format)' => "orders#check"
+    put 'orders(/:id)' => 'orders#update'
     resources :reserves, except: [:new, :create]
     resources :stocks, only: [:edit, :update, :index] do
       collection { get "index_all" }
