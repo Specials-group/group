@@ -16,7 +16,7 @@
   <% @today_order.zip(@size, @staple, @main, @sub).each do |order,size,staple,main,sub| %>
   <tr>
     <td><%= order.member_id %></td>
-    <td><%= link_to order.receive_date.strftime("%Y年%m月%d日 %H:%M:%S"), [:admin, order] %></td>
+    <td><%= link_to order.receive_date.strftime("%Y年%m月%d日 %H:%M"), [:admin, order] %></td>
     <td><%= size %></td>
     <td><%= staple %></td>
     <td><%= main %></td>

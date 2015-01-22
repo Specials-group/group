@@ -46,10 +46,8 @@ class DishesController < ApplicationController
       when "sub"
         session[:order].sub_id = @dish.id
     end
-    redirect_to :controller=>"orders", :action=>"new", :name => "select" 
-    
+    redirect_to :controller=>"orders", :action=>"new", :name => "select"
   end
-
 
   private
   def send_image

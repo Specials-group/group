@@ -1,7 +1,7 @@
 <table class="order_show">
   <tr>
     <th>受取日時</th>
-    <td><%= @order.receive_date %></td>
+    <td><%= @order.receive_date.strftime("%Y年%m月%d日 %H:%M") %></td>
   </tr>
   <tr>
     <th>弁当サイズ</th>
@@ -16,7 +16,6 @@
         <p><%= @staple.yen %>円</p>
         <p><%= @staple.kcal %>Kcal</p>
         <p><%= @staple.genra %></p>
-        <p><%= @staple.category %></p>
       </div>
       </td>
   </tr>
@@ -29,7 +28,6 @@
         <p><%= @main.yen %>円</p>
         <p><%= @main.kcal %>Kcal</p>
         <p><%= @main.genra %></p>
-        <p><%= @main.category %></p>
       </div>
       </td>
   </tr>
@@ -42,7 +40,6 @@
         <p><%= @sub.yen %>円</p>
         <p><%= @sub.kcal %>Kcal</p>
         <p><%= @sub.genra %></p>
-        <p><%= @sub.category %></p>
       </div>
       </td>
   </tr>

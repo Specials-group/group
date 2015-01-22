@@ -1,8 +1,6 @@
 <div id="dishes">
 <h1>料理一覧</h1>
-<% if !session[:order].present? %>
 <p><%= link_to "料理の新規登録", :new_admin_dish %></p>
-<% end %>
 <% if @dishes.present? %>
   <dl class="thumbnail clearfix">
 <% @dishes.each do |dish| %>

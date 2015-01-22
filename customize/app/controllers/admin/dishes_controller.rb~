@@ -58,6 +58,7 @@ class Admin::DishesController < Admin::Base
 
   def search
     @dishes = Dish.search(params[:q])
+　　　　@foodstuff = Foodstuff.all
     render "index"
   end
 

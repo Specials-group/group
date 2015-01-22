@@ -7,8 +7,9 @@
   </tr>
   <% @stocks.each do |stock| %>
   <tr>
-    <td><%= link_to stock.date.to_date.try(:strftime, "%Y年 %m月 %d日") , :action => :show_date , name => stock.date %></td>
+    <td><%= link_to stock.date.to_date.try(:strftime, "%Y年 %m月 %d日") , :action => :show_date , :name => stock.date %></td>
   </tr>
   <% end %>
 </table>
+<%= will_paginate @all_order, :previous_label=>'前', :next_label=>'次', :gap=>'…' %>
 <% end %>

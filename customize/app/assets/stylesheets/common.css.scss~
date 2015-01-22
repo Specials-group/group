@@ -11,7 +11,7 @@ div#container {
 
 /* 左の枠（コンテンツを入れる） */
 div#content {
-  float: left;
+  float: right;
   width: $container_width - $sidebar_width - 20px;
   padding: 10px 10px 10px 0;
 }
@@ -24,8 +24,24 @@ padding: 20px 0 40px 0;
 
 /* ヘッダー */
 div#header {
-  border-top: 4px solid #6bb;
+  border-top: 4px solid #FAB6A2;
   
+  div.logo{
+    float: left;
+    width: 50%;
+    color:#FF3300;
+    font-size: 320%;
+  }
+  div#login_form{
+    float: left;
+    width: 50%;
+    div#login{
+      float: right;
+      h2{
+        color:#00FF00;
+      }
+    }
+  }
   p.member {
     width: 300px;
     float: right;
@@ -41,7 +57,7 @@ div#footer {
   font: 11px Verdana;
   color: #888;
   padding: 8px 0;
-  border-top: 4px solid #6bb;
+  border-top: 4px solid #FAB6A2;
   text-align: center;
 }
 
@@ -73,10 +89,10 @@ div#admin_menubar {
 /* メインコンテンツ */
 div#content {
   h1 {
-    color: #88c;
+    color: #FF3300;
     font-weight: normal;
     font-size: 150%;
-    border-bottom: 2px solid #88c;
+    border-bottom: 2px solid #FAB6A2;
     margin-bottom: 0.5em;
   }
   h2 {
@@ -102,9 +118,9 @@ div#content {
 /* サイドバー */
 div#sidebar {
   h2 {
-    color: #080;
+    color: #F80D6B;
     font-weight: bold;
-    border-bottom: 1px dotted #080;
+    border-bottom: 1px dotted #F80D6B;
     margin-bottom: 0.5em;
     font-size: 100%;
   }
@@ -131,7 +147,7 @@ div#sidebar {
   width: 100%;
   
   th {
-    background-color: #499;
+    background-color: #FCCC66;
     color: white;
     font-weight: normal;
   }
@@ -139,7 +155,7 @@ div#sidebar {
     padding: 4px;
   }
   td {
-    background-color: #cee;
+    background-color: #FCCC66;
   }
 }
 
@@ -151,6 +167,32 @@ table.list {
 table.attr {
   @include data-table;
   th { text-align: right; }
+}
+table.orders_index {
+  @include data-table;
+  th { text-align: center;}
+}
+table.order_show {
+  @include data-table;
+  img{
+    float: left;
+    width: 220px;
+    height:150px;
+  }
+  div#explanation{
+    float: left;
+  }
+}
+table.order_new {
+  @include data_table;
+  img{
+    float: left;
+    width: 220px;
+    height:150px;
+  }
+  div#explanation{
+    float: left;
+  }
 }
 
 /* フラッシュ */
@@ -198,5 +240,44 @@ div#dish{
   }
 }
 
+dl.thumbnail div {
+ float: left;
+ margin: 0 50px 50px 0;
+}
+dl.thumbnail img {
+ 
+ border: 0px solid #bbb;
+ width: 180px;
+ height: 135px;
+
+}
+
+dt#visible_dish{
+ border: 5px solid #ff0000;
+ width: 180px;
+ height: 135px;
+}
+
+dt#invisible_dish{
+ border: 5px solid #0000ff;
+ width: 180px;
+ height: 135px;
+}
+
+dl.thumbnail a { display: block; }
+dl.thumbnail dd {
+ text-align: center;
+ margin-left: 0;
+ margin-top: 2px;
+}
+.clearfix:after {
+ content: ".";
+ display: block;
+ height: 10;
+ line-height: 0;
+ clear: both;
+ visibility: hidden;
+}
+.clearfix { display: inline-block; }
 
 

@@ -5,7 +5,11 @@ class Admin::StocksController < Admin::Base
   end
 
   def index_all
-    @stocks = Stock.select(:date).uniq
+    @stocks = Stock.select(:date).uniq.paginate(
+      :page => params[:page],
+      :order => 'date',
+      :per_page => 15
+    )
   end
 
   def show_date

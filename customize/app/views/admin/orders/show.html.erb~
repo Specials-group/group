@@ -9,7 +9,7 @@
   </tr>
   <tr>
     <th>受取日時</th>
-    <td><%= @order.order_date %></td>
+    <td><%= @order.receive_date.strftime("%Y-%m-%d %H:%M:%S") %></td>
   </tr>
   <tr>
     <th>弁当サイズ</th>
@@ -17,19 +17,39 @@
   </tr>
   <tr>
     <th>主食</th>
-    <td><%= @staple.name %></td>
+    <td>
+      <%= @staple.name %>
+      <%= @staple.yen %>円
+    </td>
   </tr>
   <tr>
     <th>主菜</th>
-    <td><%= @main.name %></td>
+    <td>
+      <%= @main.name %>
+      <%= @main.yen %>円
+    </td>
   </tr>
   <tr>
     <th>副菜</th>
-    <td><%= @sub.name %></td>
+    <td>
+      <%= @sub.name %>
+      <%= @sub.yen %>円
+    </td>
   </tr>
   <tr>
-    <th>数量</th>
+    <th>小計</th>
+    <td>
+      <%= @price.to_i %>円 &nbsp;&nbsp;|&nbsp;&nbsp;
+      <%= @kcal.to_i %>kcal
+    </td>
+  </tr>
+  <tr>
+    <th>個数</th>
     <td><%= @order.num %></td>
+  </tr>
+  <tr>
+    <th>合計</th>
+    <td><%= (@price*@order.num).to_i%>円</td>
   </tr>
   <tr>
     <th>状態</th>

@@ -9,7 +9,7 @@
   </tr>
   <tr>
     <th>受取日時</th>
-    <td><%= @order.order_date %></td>
+    <td><%= @order.receive_date.strftime("%Y-%m-%d %H:%M") %></td>
   </tr>
   <tr>
     <th>弁当サイズ</th>
@@ -35,14 +35,6 @@
       <%= @sub.name %>
       <%= @sub.yen %>円
     </td>
-  </tr>
-  <tr>
-    <th>数量</th>
-    <td><%= @order.num %></td>
-  </tr>
-  <tr>
-    <th>状態</th>
-    <td><%= @order.status %></td>
   </tr>
   <tr>
     <th>小計</th>

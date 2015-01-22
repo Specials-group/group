@@ -122,7 +122,7 @@ class OrdersController < ApplicationController
        
        
        @max = @max - @lunchbox.capacity * @order.num
-       if @max < 0
+       if @max <= 0
         @order.status = "仮予約"
        end
        

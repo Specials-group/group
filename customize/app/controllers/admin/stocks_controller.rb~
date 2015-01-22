@@ -5,12 +5,16 @@ class Admin::StocksController < Admin::Base
   end
 
   def index_all
-    @stocks = Stock.select(:date).uniq
+    @stocks = Stock.select(:date).uniq.paginate(
+      :page => params[:page],
+      :order => 'date',
+      :per_page => 10
+    )
   end
 
   def show_date
     @date = params[:name].split(" ")[0]
-    @stocks = Stock.find(:all, :conditions=>["date like ?", @date])
+    @stocks = Stock.find(:all, :conditions=>["date like ?", @date+"%"])
   end
 
   def edit

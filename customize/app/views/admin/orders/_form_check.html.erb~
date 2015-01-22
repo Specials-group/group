@@ -16,6 +16,7 @@
         <p><%= @staple.yen %>円</p>
         <p><%= @staple.kcal %>Kcal</p>
         <p><%= @staple.genra %></p>
+        <p><%= @staple.category %></p>
       </div>
       </td>
   </tr>
@@ -28,6 +29,7 @@
         <p><%= @main.yen %>円</p>
         <p><%= @main.kcal %>Kcal</p>
         <p><%= @main.genra %></p>
+        <p><%= @main.category %></p>
       </div>
       </td>
   </tr>
@@ -40,6 +42,7 @@
         <p><%= @sub.yen %>円</p>
         <p><%= @sub.kcal %>Kcal</p>
         <p><%= @sub.genra %></p>
+        <p><%= @sub.category %></p>
       </div>
       </td>
   </tr>

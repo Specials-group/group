@@ -3,3 +3,17 @@
 <p><%= text_field_tag "q", params[:q] , size: 12 %>
 <%= submit_tag "検索" %></p>
 <% end %>
+
+<h2>マイナス検索フォーム</h2>
+<%= form_tag :search_dishes, method: :get do %>
+  <p><%= check_box_tag("foodstaff[name][]", '1') %>えび</p>
+  <p><%= check_box_tag("foodstaff[name][]", '2') %>たこ</p>
+  <p><%= check_box_tag("foodstaff[name][]", '4') %>いか</p>
+  <p><%= check_box_tag("foodstaff[name][]", '8') %>かに</p>
+  <p><%= check_box_tag("foodstaff[name][]", '16') %>くらげ</p>
+  <p><%= check_box_tag("foodstaff[name][]", '32') %>鶏肉</p>
+  <p><%= check_box_tag("foodstaff[name][]", '64') %>牛肉</p>
+  <p><%= check_box_tag("foodstaff[name][]", '128') %>豚肉</p>
+<%= submit_tag "検索" %>
+<% end %>
+
